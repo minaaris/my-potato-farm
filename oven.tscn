@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://dii1syko1ydnq" path="res://oven.gd" id="1_my181"]
 [ext_resource type="PackedScene" uid="uid://brnnq5eu4oeol" path="res://baked_potato.tscn" id="2_3n55h"]
 [ext_resource type="PackedScene" uid="uid://cnrsjo8852udd" path="res://Assets/oven/oven.glb" id="3_3n55h"]
+[ext_resource type="AudioStream" uid="uid://dcv41pi1ybpnx" path="res://Sound/bretbernhoft-microwave-oven-01-410907.mp3" id="4_i66py"]
+[ext_resource type="AudioStream" uid="uid://66qn0ptlx1vo" path="res://Sound/dragon-studio-ding-sfx-472366.mp3" id="5_7fonb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_86m2o"]
 size = Vector3(1.5, 1.5, 1.5)
@@ -34,6 +36,12 @@ shape = SubResource("BoxShape3D_v3osv")
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=935790024]
 light_color = Color(1, 0.45336777, 0.07938244, 1)
 light_energy = 5.0
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1035519166]
+stream = ExtResource("4_i66py")
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="." unique_id=1473144163]
+stream = ExtResource("5_7fonb")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

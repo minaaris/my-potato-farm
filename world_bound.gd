@@ -14,5 +14,5 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("wallaby"):
 		body.global_position = $RespawnPoint2.global_position
-	if body.is_in_group("potato"):
-		body.global_position = $RespawnPoint.global_position
+	# if body.is_in_group("potato"):
+		# body.global_position = $RespawnPoint.global_position
