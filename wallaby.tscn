@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://cw7nfefaec1im"]
+
+[ext_resource type="PackedScene" uid="uid://8vctd6yrf7qb" path="res://Assets/wallaby/wallaby.glb" id="1_mx6bi"]
+[ext_resource type="Script" uid="uid://b62fc8aqcwxqj" path="res://wallaby.gd" id="1_t0e8y"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v3osv"]
+height = 1.0
+
+[node name="Wallaby" type="CharacterBody3D" unique_id=1509227528 groups=["wallaby"]]
+script = ExtResource("1_t0e8y")
+
+[node name="wallaby" parent="." unique_id=1070166137 instance=ExtResource("1_mx6bi")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=16696495]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_v3osv")

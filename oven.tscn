@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://723xpagswtp6"]
+
+[ext_resource type="Script" uid="uid://dii1syko1ydnq" path="res://oven.gd" id="1_my181"]
+[ext_resource type="PackedScene" uid="uid://brnnq5eu4oeol" path="res://baked_potato.tscn" id="2_3n55h"]
+[ext_resource type="PackedScene" uid="uid://cnrsjo8852udd" path="res://Assets/oven/oven.glb" id="3_3n55h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_86m2o"]
+size = Vector3(1.5, 1.5, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v3osv"]
+size = Vector3(1, 1.35, 1)
+
+[node name="Oven" type="Area3D" unique_id=38733942]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_my181")
+cooked_potato = ExtResource("2_3n55h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=126686466]
+shape = SubResource("BoxShape3D_86m2o")
+
+[node name="Timer" type="Timer" parent="." unique_id=2008270071]
+wait_time = 15.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1073279726]
+
+[node name="oven_model" parent="StaticBody3D" unique_id=476307257 instance=ExtResource("3_3n55h")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.75, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1953918571]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05670166, 0)
+shape = SubResource("BoxShape3D_v3osv")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=935790024]
+light_color = Color(1, 0.45336777, 0.07938244, 1)
+light_energy = 5.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://5pc4nt6y2ker"]
+
+[ext_resource type="PackedScene" uid="uid://jea87f6nckks" path="res://Assets/island/island.glb" id="1_0iamf"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7mycd"]
+diffuse_mode = 3
+specular_mode = 2
+albedo_color = Color(0.36332607, 0.6384871, 0.41804633, 1)
+metallic_specular = 1.0
+roughness = 0.0
+
+[node name="island" unique_id=1515105460 instance=ExtResource("1_0iamf")]
+
+[node name="Landscape" parent="." index="0" unique_id=1958409435]
+surface_material_override/0 = SubResource("StandardMaterial3D_7mycd")

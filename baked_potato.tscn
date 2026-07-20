@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://brnnq5eu4oeol"]
+
+[ext_resource type="PackedScene" uid="uid://b3176s8ablcgs" path="res://Assets/baked_potato/baked_potato.glb" id="1_8m4e7"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7mycd"]
+radius = 0.4
+
+[node name="BakedPotato" type="RigidBody3D" unique_id=1979310345 groups=["baked_potato", "pickable"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1946785528]
+shape = SubResource("SphereShape3D_7mycd")
+
+[node name="Sketchfab_Scene" parent="." unique_id=1457038701 instance=ExtResource("1_8m4e7")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)

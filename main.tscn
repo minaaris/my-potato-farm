@@ -1,0 +1,290 @@
+[gd_scene format=3 uid="uid://c74dcukxgm273"]
+
+[ext_resource type="PackedScene" uid="uid://jea87f6nckks" path="res://Assets/island/island.glb" id="1_lquwl"]
+[ext_resource type="Script" uid="uid://bkfhbjg1qe0lv" path="res://world_bound.gd" id="1_yaehf"]
+[ext_resource type="PackedScene" uid="uid://dqbbfa8564eb8" path="res://player.tscn" id="2_7mycd"]
+[ext_resource type="PackedScene" uid="uid://bc5byyp06hgiu" path="res://tree.tscn" id="2_dg77c"]
+[ext_resource type="PackedScene" uid="uid://723xpagswtp6" path="res://oven.tscn" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://b3rqirpj3gf81" path="res://potato.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://d317nnqxd0x7o" path="res://Assets/wooden_house/wooden_house.glb" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://c1owpw5sylpf4" path="res://Assets/wooden_furniture/chair__wooden_chair.glb" id="7_5vw27"]
+[ext_resource type="Shader" uid="uid://cy2gfn3dnur4j" path="res://water.gdshader" id="7_272bh"]
+[ext_resource type="Script" uid="uid://cf0acns44dl2x" path="res://dinner_area.gd" id="8_4c57u"]
+[ext_resource type="PackedScene" uid="uid://brmcijmyqkr4a" path="res://Assets/wooden_furniture/round_table.glb" id="8_5vw27"]
+[ext_resource type="PackedScene" uid="uid://b2i2fpc4oqkv2" path="res://Assets/wooden_furniture/kitchen_spice_cabinet__game_ready_model.glb" id="9_kek77"]
+[ext_resource type="PackedScene" uid="uid://bxfgp2qc0f2k3" path="res://Assets/crops/potato_crops.glb" id="11_efxa6"]
+[ext_resource type="PackedScene" uid="uid://cffsk7vwpoong" path="res://Assets/bed/old_bed.glb" id="13_ycdy4"]
+[ext_resource type="Script" uid="uid://b8aitx3odel5h" path="res://fade.gd" id="14_w48qg"]
+[ext_resource type="PackedScene" uid="uid://8vctd6yrf7qb" path="res://Assets/wallaby/wallaby.glb" id="15_vivmo"]
+[ext_resource type="PackedScene" uid="uid://cw7nfefaec1im" path="res://wallaby.tscn" id="16_074og"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kek77"]
+sky_top_color = Color(0.62795365, 0.32139838, 0.5768636, 1)
+sky_horizon_color = Color(0.8437023, 0.5770211, 0.52502227, 1)
+ground_bottom_color = Color(0.85078514, 0.64029944, 0.6574106, 1)
+ground_horizon_color = Color(0.63536483, 0.545813, 0.70561886, 1)
+
+[sub_resource type="Sky" id="Sky_7mycd"]
+sky_material = SubResource("ProceduralSkyMaterial_kek77")
+
+[sub_resource type="Environment" id="Environment_klvb3"]
+background_mode = 2
+background_color = Color(0.25795645, 0.49535114, 0.6369747, 1)
+background_energy_multiplier = 1.25
+sky = SubResource("Sky_7mycd")
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.9420223, 0.69282424, 0.6992356, 1)
+fog_sun_scatter = 0.1
+fog_density = 1.0
+fog_sky_affect = 0.5
+volumetric_fog_density = 0.01
+volumetric_fog_albedo = Color(0.8845616, 0.5751692, 0.7492549, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_klvb3"]
+size = Vector3(1000, 0.1, 1000)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7dm0k"]
+albedo_color = Color(0.99625343, 0.89225036, 0.64762086, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_v3osv"]
+material = SubResource("StandardMaterial3D_7dm0k")
+size = Vector2(15, 15)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_86m2o"]
+render_priority = 0
+shader = ExtResource("7_272bh")
+shader_parameter/WATER_COL = Color(0.04, 0.38, 0.88, 1)
+shader_parameter/WATER2_COL = Color(0.04, 0.35, 0.78, 1)
+shader_parameter/FOAM_COL = Color(0.8170707, 0.7959857, 0.9132865, 1)
+shader_parameter/distortion_speed = 2.0
+shader_parameter/tile = Vector2(100, 100)
+shader_parameter/height = 2.0
+shader_parameter/wave_size = Vector2(2, 2)
+shader_parameter/wave_speed = 1.5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_klvb3"]
+material = SubResource("ShaderMaterial_86m2o")
+size = Vector2(1000, 1000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kek77"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v3osv"]
+font_size = 64
+
+[node name="World" type="Node3D" unique_id=1472735448]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=92121059]
+environment = SubResource("Environment_klvb3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=737283768]
+transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 0, 0)
+light_color = Color(0.89311576, 0.6667709, 0.558006, 1)
+light_bake_mode = 1
+
+[node name="WorldBound" type="Area3D" parent="." unique_id=1700847059]
+script = ExtResource("1_yaehf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldBound" unique_id=831327626]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("BoxShape3D_klvb3")
+
+[node name="RespawnPoint" type="Node3D" parent="WorldBound" unique_id=1357344191]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+
+[node name="RespawnPoint2" type="Node3D" parent="WorldBound" unique_id=1751371724]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 10, 0)
+
+[node name="Tree" parent="." unique_id=701596530 instance=ExtResource("2_dg77c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -4, 3.75, 4.5)
+
+[node name="Ground" type="MeshInstance3D" parent="." unique_id=25171538]
+mesh = SubResource("PlaneMesh_v3osv")
+
+[node name="island" parent="Ground" unique_id=1515105460 instance=ExtResource("1_lquwl")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+
+[node name="Player" parent="." unique_id=1966531020 instance=ExtResource("2_7mycd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5.75, 6.5)
+
+[node name="Oven" parent="." unique_id=38733942 instance=ExtResource("3_1bvp3")]
+transform = Transform3D(0.25881916, 0, 0.9659259, 0, 1, 0, -0.9659259, 0, 0.25881916, 1.75, 5.76455, 5.5)
+
+[node name="PotatoStack" type="Node3D" parent="." unique_id=658763803]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, -0.25, 0)
+
+[node name="Potato" parent="PotatoStack" unique_id=1392833491 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.25, -2.5)
+
+[node name="Potato2" parent="PotatoStack" unique_id=1709501350 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 4.25, -2.5)
+
+[node name="Potato3" parent="PotatoStack" unique_id=1079812518 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 4.25, -2.5)
+
+[node name="Potato4" parent="PotatoStack" unique_id=392054963 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.25, -1.75)
+
+[node name="Potato5" parent="PotatoStack" unique_id=933709065 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 4.25, -1.75)
+
+[node name="Potato6" parent="PotatoStack" unique_id=86425478 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 4.25, -1.75)
+
+[node name="Potato7" parent="PotatoStack" unique_id=1352915730 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 4.25, -2.75)
+
+[node name="Potato8" parent="PotatoStack" unique_id=695576434 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 4.25, -2.75)
+
+[node name="Potato9" parent="PotatoStack" unique_id=1279251918 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4.25, -2.75)
+
+[node name="Potato10" parent="PotatoStack" unique_id=962105890 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 4.25, -2)
+
+[node name="Potato11" parent="PotatoStack" unique_id=1945363305 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4.25, -2)
+
+[node name="Potato12" parent="PotatoStack" unique_id=302895676 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 4.25, -2)
+
+[node name="PotatoStack2" type="Node3D" parent="." unique_id=880674096]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, 0, 0.25)
+
+[node name="Potato" parent="PotatoStack2" unique_id=1629588399 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.25, -2.5)
+
+[node name="Potato2" parent="PotatoStack2" unique_id=967717376 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 4.25, -2.5)
+
+[node name="Potato3" parent="PotatoStack2" unique_id=1687896570 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 4.25, -2.5)
+
+[node name="Potato4" parent="PotatoStack2" unique_id=1704835917 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.25, -1.75)
+
+[node name="Potato5" parent="PotatoStack2" unique_id=1788714171 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 4.25, -1.75)
+
+[node name="Potato6" parent="PotatoStack2" unique_id=1927944085 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 4.25, -1.75)
+
+[node name="Potato7" parent="PotatoStack2" unique_id=1471844377 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 4.25, -2.75)
+
+[node name="Potato8" parent="PotatoStack2" unique_id=149333652 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 4.25, -2.75)
+
+[node name="Potato9" parent="PotatoStack2" unique_id=1625701250 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4.25, -2.75)
+
+[node name="Potato10" parent="PotatoStack2" unique_id=1482840427 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 4.25, -2)
+
+[node name="Potato11" parent="PotatoStack2" unique_id=1391359090 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4.25, -2)
+
+[node name="Potato12" parent="PotatoStack2" unique_id=1768808113 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 4.25, -2)
+
+[node name="House" parent="." unique_id=1567759505 instance=ExtResource("6_7mycd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4, 5, 6.5)
+
+[node name="Sea" type="MeshInstance3D" parent="." unique_id=1122758196]
+mesh = SubResource("PlaneMesh_klvb3")
+
+[node name="Cabinet" parent="." unique_id=2067468675 instance=ExtResource("9_kek77")]
+transform = Transform3D(-0.7500002, 0, 1.2990379, 0, 1.5, 0, -1.2990379, 0, -0.7500002, 2, 5, 7.5)
+
+[node name="DinnerArea" type="Area3D" parent="." unique_id=1113876121]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, -0.25)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("8_4c57u")
+
+[node name="Chair" parent="DinnerArea" unique_id=1127477476 instance=ExtResource("7_5vw27")]
+transform = Transform3D(-0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, -0.70710677, 6.25, 5, 6.5)
+
+[node name="Table" parent="DinnerArea" unique_id=1686149525 instance=ExtResource("8_5vw27")]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 5.75, 5, 5.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DinnerArea" unique_id=375517514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.75, 5.75, 5.75)
+shape = SubResource("BoxShape3D_kek77")
+
+[node name="potato_crops" parent="." unique_id=542832652 instance=ExtResource("11_efxa6")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.75, 3.75, -2.75)
+
+[node name="potato_crops2" parent="." unique_id=18117598 instance=ExtResource("11_efxa6")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.25, 3.75, -2.75)
+
+[node name="potato_crops3" parent="." unique_id=1405400814 instance=ExtResource("11_efxa6")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2, 3.75, -2.75)
+
+[node name="Bed" parent="." unique_id=641311373 instance=ExtResource("13_ycdy4")]
+transform = Transform3D(-6.556708e-08, 0, -1.5, 0, 1.5, 0, 1.5, 0, -6.556708e-08, 5.25, 5, 7.5)
+
+[node name="Fade" type="CanvasLayer" parent="." unique_id=1954043928]
+script = ExtResource("14_w48qg")
+
+[node name="ColorRect" type="ColorRect" parent="Fade" unique_id=1400292840]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Fade/ColorRect" unique_id=146255573]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -274.0
+offset_top = -89.5
+offset_right = 274.0
+offset_bottom = 89.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Enjoy the potato!
+"
+label_settings = SubResource("LabelSettings_v3osv")
+
+[node name="Label2" type="Label" parent="Fade/ColorRect" unique_id=817189907]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.0
+offset_top = 12.0
+offset_right = 276.0
+offset_bottom = 191.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "And have a good evening :3
+"
+label_settings = SubResource("LabelSettings_v3osv")
+
+[node name="Wallaby" parent="." unique_id=1509227528 instance=ExtResource("16_074og")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.75, 3.75, 0.5)
+
+[node name="Tree2" parent="." unique_id=1470686304 instance=ExtResource("2_dg77c")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 10.75, 2.25, -3.25)
+
+[node name="Tree3" parent="." unique_id=649932860 instance=ExtResource("2_dg77c")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 1.5, 1)
+
+[node name="Tree4" parent="." unique_id=710101454 instance=ExtResource("2_dg77c")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 7.25, 3.75, 10.5)
+
+[node name="wallaby" parent="." unique_id=1070166137 instance=ExtResource("15_vivmo")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 5, -12, -200)
+
+[connection signal="body_entered" from="WorldBound" to="WorldBound" method="_on_body_entered"]
+[connection signal="body_entered" from="DinnerArea" to="DinnerArea" method="_on_body_entered"]
+[connection signal="body_exited" from="DinnerArea" to="DinnerArea" method="_on_body_exited"]

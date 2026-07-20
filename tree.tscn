@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bc5byyp06hgiu"]
+
+[ext_resource type="PackedScene" uid="uid://cd02cha4a4tug" path="res://Assets/tree/low_poly_tree.glb" id="1_brfkd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8gsp5"]
+albedo_color = Color(0.17486542, 0.32902446, 0.1474691, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3a1x1"]
+albedo_color = Color(0.3946839, 0.26870337, 0.15903088, 1)
+
+[node name="Tree" unique_id=701596530 instance=ExtResource("1_brfkd")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="Plane_0" parent="Sketchfab_model/Root/Plane" parent_id_path=PackedInt32Array(612628899) index="0" unique_id=205116751]
+surface_material_override/0 = SubResource("StandardMaterial3D_8gsp5")
+
+[node name="Plane_1" parent="Sketchfab_model/Root/Plane" parent_id_path=PackedInt32Array(612628899) index="1" unique_id=248262654]
+surface_material_override/0 = SubResource("StandardMaterial3D_3a1x1")
