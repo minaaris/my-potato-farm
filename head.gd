@@ -27,6 +27,8 @@ func _process(delta):
 				object.linear_velocity = Vector3(0.1, 3, 0.1)
 
 func _input(event):
+	if event is InputEventMouseButton:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if event is InputEventMouseMotion:
 		v.y -= (event.relative.x * sens)
 		v.x -= (event.relative.y * sens)

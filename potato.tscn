@@ -2,13 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://qgicpgw2gbcg" path="res://Assets/potato/potato.glb" id="1_5wy20"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_v3osv"]
-radius = 0.4
+[sub_resource type="SphereShape3D" id="SphereShape3D_d13ii"]
+radius = 0.35
 
-[node name="Potato" type="RigidBody3D" unique_id=1392833491 groups=["pickable", "potato"]]
+[node name="Potato" type="RigidBody3D" unique_id=906366570 groups=["pickable", "potato"]]
 
-[node name="potato" parent="." unique_id=1021114808 instance=ExtResource("1_5wy20")]
+[node name="potato" parent="." unique_id=1021114808 groups=["pickable", "potato"] instance=ExtResource("1_5wy20")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -0.35, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=920078516]
-shape = SubResource("SphereShape3D_v3osv")
+shape = SubResource("SphereShape3D_d13ii")

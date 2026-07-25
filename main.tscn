@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://723xpagswtp6" path="res://oven.tscn" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://b3rqirpj3gf81" path="res://potato.tscn" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://d317nnqxd0x7o" path="res://Assets/wooden_house/wooden_house.glb" id="6_7mycd"]
+[ext_resource type="AudioStream" uid="uid://bxhtl4ts3asui" path="res://Sound/aussie_magpie.mp3" id="6_82xsv"]
 [ext_resource type="PackedScene" uid="uid://c1owpw5sylpf4" path="res://Assets/wooden_furniture/chair__wooden_chair.glb" id="7_5vw27"]
 [ext_resource type="Shader" uid="uid://cy2gfn3dnur4j" path="res://water.gdshader" id="7_272bh"]
 [ext_resource type="Script" uid="uid://cf0acns44dl2x" path="res://dinner_area.gd" id="8_4c57u"]
@@ -19,6 +20,7 @@
 [ext_resource type="Script" uid="uid://b8aitx3odel5h" path="res://fade.gd" id="14_w48qg"]
 [ext_resource type="PackedScene" uid="uid://8vctd6yrf7qb" path="res://Assets/wallaby/wallaby.glb" id="15_vivmo"]
 [ext_resource type="PackedScene" uid="uid://cw7nfefaec1im" path="res://wallaby.tscn" id="16_074og"]
+[ext_resource type="PackedScene" uid="uid://bjsdp7h7m6id3" path="res://Assets/birds/bird.glb" id="21_getpj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kek77"]
 sky_top_color = Color(0.62795365, 0.32139838, 0.5768636, 1)
@@ -114,6 +116,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5.75, 6.5)
 
 [node name="Oven" parent="." unique_id=38733942 instance=ExtResource("3_1bvp3")]
 transform = Transform3D(0.25881916, 0, 0.9659259, 0, 1, 0, -0.9659259, 0, 0.25881916, 1.75, 5.76455, 5.5)
+
+[node name="MagpieSound" type="AudioStreamPlayer3D" parent="." unique_id=1786593885]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 4, -1)
+stream = ExtResource("6_82xsv")
+volume_db = -10.0
+max_db = 0.0
+autoplay = true
+parameters/looping = true
 
 [node name="PotatoStack" type="Node3D" parent="." unique_id=658763803]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.25, -0.25, 0)
@@ -279,7 +289,7 @@ mesh = SubResource("PlaneMesh_klvb3")
 
 [node name="U0Lndlt5PdfOceanWaves562776" type="AudioStreamPlayer" parent="Sea" unique_id=2094855968]
 stream = ExtResource("9_074og")
-volume_db = 1.25
+volume_db = 3.0
 autoplay = true
 parameters/looping = true
 
@@ -335,15 +345,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -274.0
-offset_top = -89.5
-offset_right = 274.0
-offset_bottom = 89.5
+offset_left = -272.0
+offset_top = -212.0
+offset_right = 276.0
+offset_bottom = 58.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Enjoy the potato!
+text = "Sit down, take a break
+Enjoy the potato!
 "
 label_settings = SubResource("LabelSettings_v3osv")
+horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="Fade/ColorRect" unique_id=817189907]
 layout_mode = 1
@@ -358,9 +370,10 @@ offset_right = 276.0
 offset_bottom = 191.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "And have a good evening <3
+text = "You deserve some rest <3
 "
 label_settings = SubResource("LabelSettings_v3osv")
+horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="Fade/ColorRect" unique_id=1536163546]
 layout_mode = 1
@@ -376,6 +389,7 @@ offset_bottom = 359.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "That's the whole game :3
+Thanks for playing, hope you enjoy it!
 "
 label_settings = SubResource("LabelSettings_cegan")
 horizontal_alignment = 1
@@ -400,6 +414,12 @@ transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 7.25, 3.75, 10.5)
 
 [node name="wallaby" parent="." unique_id=1070166137 instance=ExtResource("15_vivmo")]
 transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 5, -12, -200)
+
+[node name="Birds" parent="." unique_id=973886769 instance=ExtResource("21_getpj")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 2.75, 25.75, -9)
+
+[node name="Birds2" parent="." unique_id=1027749463 instance=ExtResource("21_getpj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.75, 26.75, -10.5)
 
 [connection signal="body_entered" from="WorldBound" to="WorldBound" method="_on_body_entered"]
 [connection signal="body_entered" from="DinnerArea" to="DinnerArea" method="_on_body_entered"]

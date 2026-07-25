@@ -18,7 +18,7 @@ func _on_body_entered(body: Node3D) -> void:
 		body.queue_free()
 		$AudioStreamPlayer3D.play()
 		await fade.fade(1.0, 3).finished
-		await fade.fade(0.0, 3).finished
+		await fade.fade(0.0, 5).finished
 		print("eat")
 
 
